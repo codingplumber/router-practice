@@ -1,11 +1,14 @@
 import React from 'react';
 
-const individualContact = ({ match }) => {
+const individualContact = (props) => {
     // props
-    console.log(match);
+    console.log(props.contacts);
     // let num = parseInt(match.params.contactId)
     return (
-        <div style={{fontSize: 32}}>{match.params.contactId}</div>
+        <div>
+            <div style={{fontSize: 32}}>{props.match.params.contactId}</div>
+            <p></p>
+        </div>
     );
 }
 

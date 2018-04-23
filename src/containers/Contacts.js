@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter,Route, Switch } from "react-router-dom";
 
 import * as actionTypes from '../store/actions';
 import Contact from '../components/Contact';
@@ -27,23 +27,25 @@ const styles = {
 }
 
 class Contacts extends Component {
-    componentWillMount() {
-        this.props.onContactLoad();
-    }
+    // componentWillMount() {
+    //     this.props.onContactLoad();
+    // }
 
     render() {
         return (
-            <div style={styles.contactsWrapper}>
-                <div style={styles.contactsContainer}>
-                    <Contact contacts={this.props.people} />
-                </div>
+            <BrowserRouter>
+                <div style={styles.contactsWrapper}>
+                    <div style={styles.contactsContainer}>
+                        <Contact contacts={this.props.people} />
+                    </div>
 
-                <div style={styles.routeContainer}>
-                    <Switch>
-                        <Route exact path='/:contactId' component={IndividualContact} />
-                    </Switch>
+                    <div style={styles.routeContainer}>
+                        <Switch>
+                            <Route exact path='/:contactId' component={IndividualContact} />
+                        </Switch>
+                    </div>
                 </div>
-            </div>
+            </BrowserRouter>
         );
 
     }

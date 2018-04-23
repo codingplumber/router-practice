@@ -14,7 +14,7 @@ const styles = {
 const contact = props => {
     const contact = props.contacts.map(contact => {
         return ( 
-            <Link to={`${contact.id}`} key={ contact.id } >          
+            <Link to={`${contact.id}`} key={ contact.id } contacts={props.contacts} >          
                 <div style={styles.contactContainer}>              
                     <p>{ contact.name }</p>
                     <p>{ contact.email }</p>
