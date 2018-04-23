@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Link } from 'react-router-dom';
+
+import Contacts from './containers/Contacts';
+// import Hello from './components/Hello';
+
+const styles = {
+  appContainer: {
+    // display: 'flex',
+    height: '100vh'
+  }
+}
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <div style={styles.appContainer}>
+        <Contacts />
+      </div>  
     );
   }
 }
 
 export default App;
+
+// <div style={styles.appContainer}>
+//   <Contacts />
+// </div>
+
+// <div>
+// <ul>
+//   <li><Link to='/'>Hello</Link></li>
+//   <li><Link to='/contacts'>Contacts</Link></li>
+// </ul>
+
+// <Route path='/' component={Hello} />
+// <Route path='/contacts' component={Contacts} />
+// </div>  
