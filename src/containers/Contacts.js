@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter,Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import * as actionTypes from '../store/actions';
 import Contact from '../components/Contact';
-import IndividualContact from '../components/IndividualContact';
+import Form from './Form';
 
 const styles = {
     contactsWrapper: {
@@ -27,7 +27,7 @@ const styles = {
 }
 
 class Contacts extends Component {
-    // componentWillMount() {
+    // componentDidMount() {
     //     this.props.onContactLoad();
     // }
 
@@ -36,12 +36,13 @@ class Contacts extends Component {
             <BrowserRouter>
                 <div style={styles.contactsWrapper}>
                     <div style={styles.contactsContainer}>
-                        <Contact contacts={this.props.people} />
+                        <Contact />
                     </div>
 
                     <div style={styles.routeContainer}>
                         <Switch>
-                            <Route exact path='/:contactId' component={IndividualContact} />
+                            <Route exact path='/:contactId' component={Form} />
+                            <Redirect from='/' to='/1' />
                         </Switch>
                     </div>
                 </div>
@@ -53,7 +54,7 @@ class Contacts extends Component {
 
 const mapStateToProps = state => {
     return {
-        people: state.contacts
+        contacts: state.contacts
     }
 }
 
@@ -63,6 +64,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
+// export default Contacts;
 export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
 
 
