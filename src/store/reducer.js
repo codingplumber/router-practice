@@ -55,14 +55,8 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case actionTypes.UPDATE_PARAMS:
-            console.log('params')
-            return {
-                ...state
-            }
-
         case actionTypes.GET_CONTACT:
-            const updatedContact = state.contacts.filter(contact => contact.id === parseInt(action.contactId));
+            const updatedContact = state.contacts.filter(contact => contact.id === parseInt(action.contactId, 10));
             return {
                 ...state,
                 loadedContact: {
@@ -75,24 +69,30 @@ const reducer = (state = initialState, action) => {
             }
 
         case actionTypes.UPDATE_CONTACT:
-            console.log('UPDATE')
+            const updatedContactsAdd = state.contacts.map(contact => {
+                if (contact.id === parseInt(action.contactId, 10)) {
+                    contact.name = state.loadedContact.name;
+                    contact.email = state.loadedContact.email;
+                    contact.phone = state.loadedContact.phone;
+                }
+                return contact;
+            });
             return {
-                ...state
+                ...state,
+                contacts: updatedContactsAdd
             }
 
         case actionTypes.DELETE_CONTACT:
-            console.log('DELETE', action.contactId)
-            const updatedContacts = state.contacts.filter(contact => contact.id !== parseInt(action.contactId))
-            console.log('updatedContacts', updatedContacts)
+            const updatedContactsDelete = state.contacts.filter(contact => contact.id !== parseInt(action.contactId, 10));
             return {
                 ...state,
-                contacts: updatedContacts,
+                contacts: updatedContactsDelete,
                 loadedContact: {
                     ...state.loadedContact,
-                    id: updatedContacts.length > 0 ? updatedContacts[0].id : '',
-                    name: updatedContacts.length > 0 ? updatedContacts[0].name : '',
-                    email: updatedContacts.length > 0 ? updatedContacts[0].email : '',
-                    phone: updatedContacts.length > 0 ? updatedContacts[0].phone : '',
+                    id: updatedContactsDelete.length > 0 ? updatedContactsDelete[0].id : '',
+                    name: updatedContactsDelete.length > 0 ? updatedContactsDelete[0].name : '',
+                    email: updatedContactsDelete.length > 0 ? updatedContactsDelete[0].email : '',
+                    phone: updatedContactsDelete.length > 0 ? updatedContactsDelete[0].phone : '',
                 }
             }
 
@@ -125,6 +125,3 @@ export default reducer;
 // ----breaks when refreshing if it is an added contact that is is on when it refreshes because contact not in memory anymore 
 
 //-----when deleting contact it doesn't change params so I have to click on each person to delete them
-
-// TO FINISH
-// ----Updating

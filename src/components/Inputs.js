@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const inputs = props => {
-    console.log(props)
     const { labels, names, values, focus, change } = props;
     return labels.map((label, i) => {
             return (

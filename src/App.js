@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-// import { Route, Link } from 'react-router-dom';
 
-import Contacts from './containers/Contacts';
-// import Hello from './components/Hello';
+import Contacts from './components/Contacts';
+
 
 const styles = {
   appContainer: {
-    // display: 'flex',
     height: '100vh'
   }
 }
@@ -21,18 +19,4 @@ class App extends Component {
   }
 }
 
-export default App;
-
-// <div style={styles.appContainer}>
-//   <Contacts />
-// </div>
-
-// <div>
-// <ul>
-//   <li><Link to='/'>Hello</Link></li>
-//   <li><Link to='/contacts'>Contacts</Link></li>
-// </ul>
-
-// <Route path='/' component={Hello} />
-// <Route path='/contacts' component={Contacts} />
-// </div>  
+export default App;  

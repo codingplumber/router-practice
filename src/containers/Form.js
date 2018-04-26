@@ -14,9 +14,6 @@ class Form extends Component {
         if (this.props.match.params.contactId !== newProps.match.params.contactId) {
             this.props.onContactChange(newProps.match.params.contactId)
         } 
-        // else if (this.props.contacts !== newProps.Contacts) {
-        //     this.props.onContactChange(newProps.match.params.contactId)
-        // }
     }
 
     submit(e) {
@@ -28,10 +25,9 @@ class Form extends Component {
     }
 
     render() {
-        // console.log('[FORM] loadedContact', this.props.contact)
         const { contact, onUpdate, onDelete, onAdd, onLoadedContactChange } = this.props;
         const { contactId } = this.props.match.params;
-        console.log('[FORM] loadedContact', contact)
+
         return (
             <form onSubmit={ this.submit }>
                 <div style={{fontSize: 32}}>{ contactId }</div>
@@ -45,7 +41,7 @@ class Form extends Component {
                 <Buttons
                     values={[ 'Update', 'Delete', 'Add New Contact' ]}
                     click={[
-                        onUpdate,
+                        () => onUpdate(contactId),
                         () => onDelete(contactId),
                         onAdd
                     ]} />   
@@ -65,11 +61,10 @@ const mapDispatchToProps = dispatch => {
     return {
         onContactChange: (contactId) => dispatch({ type: actionTypes.GET_CONTACT, contactId }),
         onLoadedContactChange: (name, value) => dispatch({ type: actionTypes.CHANGE_LOADED_CONTACT, payload: {name, value} }),
-        onUpdate: () => dispatch({ type: actionTypes.UPDATE_CONTACT }),
+        onUpdate: (contactId) => dispatch({ type: actionTypes.UPDATE_CONTACT, contactId }),
         onDelete: (contactId) => dispatch({ type: actionTypes.DELETE_CONTACT, contactId }),
         onAdd: () => dispatch({ type: actionTypes.ADD_CONTACT }),
     }
 };
 
-// export default individualContact; 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
