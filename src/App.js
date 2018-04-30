@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
+import Header from './components/Header';
 import Contacts from './components/Contacts';
 
 
@@ -9,14 +10,13 @@ const styles = {
   }
 }
 
-class App extends Component {
-  render() {
-    return (
-      <div style={styles.appContainer}>
-        <Contacts />
-      </div>  
-    );
-  }
+const app = () => {
+  return (
+    <div style={styles.appContainer}>
+      <Header />
+      <Contacts />
+    </div>  
+  );
 }
 
-export default App;  
+export default app;  

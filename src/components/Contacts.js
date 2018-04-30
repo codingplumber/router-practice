@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import Contact from '../containers/Contact';
-import Form from '../containers/Form';
+import Contact from './Contact';
+import Form from './Form';
 
 const styles = {
     contactsWrapper: {
